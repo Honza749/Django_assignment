@@ -1,9 +1,8 @@
 from rest_framework import serializers
-from django.contrib.auth.models import User
-from base.models import item
+from .models import Item
 
 
-class ItemSerializer(serializers.HyperlinkedModelSerializer):
+class ItemSerializer(serializers.ModelSerializer):
     class Meta:
-        model = item
+        model = Item
         fields = '__all__'
