@@ -9,12 +9,12 @@ with open("test_data.json", "r") as file:
 data: list = data_input
 
 
-@api_view(['GET'])
-def allData(request):
+@api_view(["GET"])
+def get_all_data(request):
     return Response(data)
 
 
-@api_view(['GET'])
+@api_view(["GET"])
 def get_by_name_id(request, model_name, object_id):
     print(model_name)
     for x in data:
@@ -23,7 +23,7 @@ def get_by_name_id(request, model_name, object_id):
                 return Response(x[model_name])
 
 
-@api_view(['GET'])
+@api_view(["GET"])
 def get_by_name(request, model_name):
     output = []
     for x in data:
@@ -38,10 +38,10 @@ def Merge(dict_1, dict_2):
     return result
 
 
-@api_view(['POST'])
-def append_object(request):
+@api_view(["POST"])
+def process_import(request):
     print(request)
-    body_unicode = request.body.decode('utf-8')
+    body_unicode = request.body.decode("utf-8")
     body: list = json.load(body_unicode)
     print(str(body))
     return Response(str(body))
