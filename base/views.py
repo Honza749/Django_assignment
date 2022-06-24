@@ -1,5 +1,6 @@
 import json
 
+from django.core.exceptions import SuspiciousOperation
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
@@ -39,10 +40,20 @@ def Merge(dict_1, dict_2):
     return result
 
 
+def is_valid_json(input_json):
+    try:
+        json.loads(input_json)
+    except ValueError as e:
+        return False
+    return True
+
+
 @api_view(["POST"])
 def process_import(request):
     print(request)
     body_unicode = request.body.decode("utf-8")
+    if not is_valid_json(body_unicode):
+        raise SuspiciousOperation("Invalid request; wrong data posted!")
     body: list = json.loads(body_unicode)
     data.append(body)
     return Response(str("OK"))
