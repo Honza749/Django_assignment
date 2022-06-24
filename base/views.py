@@ -7,6 +7,7 @@ with open("test_data.json", "r") as file:
     data_input = json.load(file)
 
 data: list = data_input
+print(type(data))
 
 
 @api_view(["GET"])
@@ -42,6 +43,6 @@ def Merge(dict_1, dict_2):
 def process_import(request):
     print(request)
     body_unicode = request.body.decode("utf-8")
-    body: list = json.load(body_unicode)
-    print(str(body))
-    return Response(str(body))
+    body: list = json.loads(body_unicode)
+    data.append(body)
+    return Response(str("OK"))
