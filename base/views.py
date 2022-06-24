@@ -1,45 +1,47 @@
-from django.shortcuts import render
-from django.http import JsonResponse
+import json
+
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .serializers import ItemSerializer
-from .models import Item
 
+with open("test_data.json", "r") as file:
+    data_input = json.load(file)
 
-@api_view(['GET'])
-def getIns(request):
-    api_urls = {
-        'List': '/task-list/',
-        'Details': '/task-detail/<str:pk>/'
-    }
-    return Response(api_urls)
-#
+data: list = data_input
+
 
 @api_view(['GET'])
 def allData(request):
-    tasks = Item.objects.all()
-    serializer = ItemSerializer(tasks, many=True)
-    return Response(serializer.data)
+    return Response(data)
+
 
 @api_view(['GET'])
-def detail_by_id(nazev_modelu, pk):
-    tasks = Item.objects.get(id=pk)
-    serializer = ItemSerializer(tasks, many=False)
-    return Response(serializer.data)
+def get_by_name_id(request, model_name, object_id):
+    print(model_name)
+    for x in data:
+        if model_name in x.keys():
+            if x[model_name]["id"] == int(object_id):
+                return Response(x[model_name])
 
-#+ funkce filtr podle  jmena
+
+@api_view(['GET'])
+def get_by_name(request, model_name):
+    output = []
+    for x in data:
+        if model_name in x.keys():
+            print(type(x))
+            output.append(x)
+    return Response(output)
+
+
+def Merge(dict_1, dict_2):
+    result = dict_1 | dict_2
+    return result
 
 
 @api_view(['POST'])
-def addData(request):
-    serializer = ItemSerializer(data=request.data)
-    if serializer.is_valid():
-        serializer.save()
-    return Response(serializer.data)
-
-@api_view(['DELETE'])
-def delete(request, pk):
-    task = Item.objects.get(id=pk)
-    task.delete()
-    return("Item succesfully deleted")
-
+def append_object(request):
+    print(request)
+    body_unicode = request.body.decode('utf-8')
+    body: list = json.load(body_unicode)
+    print(str(body))
+    return Response(str(body))
