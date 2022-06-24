@@ -2,7 +2,6 @@ from django.urls import path, re_path
 from . import views
 
 urlpatterns = [
-    # path('', views.getIns, name= "all options"),
     path("", views.get_all_data, name="detail data"),
     path(
         "detail/<str:model_name>/<str:object_id>",
