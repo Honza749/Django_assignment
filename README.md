@@ -21,21 +21,17 @@ Then navigate to http://localhost:8000
 ## Requests
 Get all objects:
 ```
-curl -X GET 
-  http://localhost:8000/ \
-  -H 'cache-control: no-cache' \
+curl -X GET http://localhost:8000
 ```
 Get all objects with name Attribute:
 ```
-curl -X GET \
-  http://localhost:8000/detail/Attribute 
-  -H 'cache-control: no-cache' \
+curl -X GET http://localhost:8000/detail/Attribute 
+
 ```
 Get data from object with name Attribute and ID 9:
 ```
-curl -X GET \
-  http://localhost:8000/detail/Attribute/9 
-  -H 'cache-control: no-cache' \
+curl -X GET http://localhost:8000/detail/Attribute/9 
+  
 ```
 Import object NewProduct with id: 4, cena: 1254, barva: modra:
 ```
