@@ -25,20 +25,19 @@ curl -X GET http://localhost:8000
 ```
 Get all objects with name Attribute:
 ```
-curl -X GET http://localhost:8000/detail/Attribute 
-
+curl -X GET http://localhost:8000/detail/AttributeName 
 ```
 Get data from object with name Attribute and ID 9:
 ```
-curl -X GET http://localhost:8000/detail/Attribute/9 
-  
+curl -X GET http://localhost:8000/detail/Attribute/9  
 ```
 Import object NewProduct with id: 4, cena: 1254, barva: modra:
 ```
 curl -X POST \
-  http://localhost:8000/import 
+  http://localhost:8000/import \
   -H 'cache-control: no-cache' \
   -H 'content-type: application/json' \
+  -H 'postman-token: 8fda4f96-2de4-c955-a55b-06a8a159783a' \
   -d '{
 	"NewProduct": {
 		
