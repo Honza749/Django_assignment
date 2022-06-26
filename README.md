@@ -37,7 +37,6 @@ curl -X POST \
   http://localhost:8000/import \
   -H 'cache-control: no-cache' \
   -H 'content-type: application/json' \
-  -H 'postman-token: 8fda4f96-2de4-c955-a55b-06a8a159783a' \
   -d '{
 	"NewProduct": {
 		
