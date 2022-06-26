@@ -31,7 +31,7 @@ Get data from object with name Attribute and ID 9:
 ```
 curl -X GET http://localhost:8000/detail/Attribute/9  
 ```
-Import object NewProduct with id: 4, cena: 1254, barva: modra:
+Import object NewProduct with id: 4, price: 1254, color: blue:
 ```
 curl -X POST \
   http://localhost:8000/import \
@@ -42,8 +42,8 @@ curl -X POST \
 	"NewProduct": {
 		
             "id": 4,
-            "cena": "1254",
-            "barva": "modra"
+            "price": "1254",
+            "color": "blue"
     }
 }'
 ```
